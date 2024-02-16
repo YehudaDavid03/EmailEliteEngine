@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/EmailEliteEngine/static/css/main.4d7fe606.css",
+    "main.js": "/EmailEliteEngine/static/js/main.4c29281e.js",
+    "static/media/profile-avatar.png": "/EmailEliteEngine/static/media/profile-avatar.23aac3776d29de3c61c9.png",
+    "index.html": "/EmailEliteEngine/index.html",
+    "main.4d7fe606.css.map": "/EmailEliteEngine/static/css/main.4d7fe606.css.map",
+    "main.4c29281e.js.map": "/EmailEliteEngine/static/js/main.4c29281e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d7fe606.css",
+    "static/js/main.4c29281e.js"
+  ]
+}
