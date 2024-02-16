@@ -21,7 +21,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "/api/get-message-options",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-message-options",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -60,7 +60,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "POST",
-      url: "/api/send-mass-initiation",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/send-mass-initiation",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

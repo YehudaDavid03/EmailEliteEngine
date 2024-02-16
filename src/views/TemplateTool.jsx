@@ -24,7 +24,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "/api/get-template",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-template",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -58,7 +58,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "POST",
-      url: "/api/create-template",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/create-template",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -87,7 +87,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "DELETE",
-      url: `/api/delete-template/${selectedValuedIdentification}`,
+      url: `https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/delete-template/${selectedValuedIdentification}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

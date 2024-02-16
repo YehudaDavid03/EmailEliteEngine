@@ -92,7 +92,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "/api/get-lead-package",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-lead-package",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -126,7 +126,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "POST",
-      url: "/api/create-lead-package",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/create-lead-package",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -155,7 +155,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: `/api/get-individual-leads/${selectedLeadSource}`,
+      url: `https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-individual-leads/${selectedLeadSource}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -182,7 +182,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "DELETE",
-      url: `/api/delete-individual-lead/${selectedValuedDelete}`,
+      url: `https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/delete-individual-lead/${selectedValuedDelete}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -210,7 +210,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "DELETE",
-      url: `/api/delete-lead-pack/${selectedLeadPack}`,
+      url: `https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/delete-lead-pack/${selectedLeadPack}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

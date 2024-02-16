@@ -13,7 +13,7 @@ const Dashboard = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "/api/get-dashboard-content",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-dashboard-content",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

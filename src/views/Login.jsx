@@ -24,7 +24,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
 
     axios({
       method: 'POST',
-      url: '/api/login',
+      url: 'https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/login',
       data: {
         userEmail: login.userEmail,
         userPassword: login.userPassword
@@ -60,7 +60,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
           <input 
             type="email" 
             name="userEmail" 
-            placeholder="User's Email Address" 
+            placeholder="User's Email" 
             value={login.userEmail} 
             onChange={(e) => { setLogin({ ...login, [e.target.name]: e.target.value }) }}
           />
