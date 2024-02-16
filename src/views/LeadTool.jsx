@@ -92,7 +92,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "http://3.23.81.35/api/get-lead-package",
+      url: "/api/get-lead-package",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -126,7 +126,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "POST",
-      url: "http://3.23.81.35/api/create-lead-package",
+      url: "/api/create-lead-package",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -155,7 +155,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: `http://3.23.81.35/api/get-individual-leads/${selectedLeadSource}`,
+      url: `/api/get-individual-leads/${selectedLeadSource}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -182,7 +182,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "DELETE",
-      url: `http://3.23.81.35/api/delete-individual-lead/${selectedValuedDelete}`,
+      url: `/api/delete-individual-lead/${selectedValuedDelete}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -210,7 +210,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "DELETE",
-      url: `http://3.23.81.35/api/delete-lead-pack/${selectedLeadPack}`,
+      url: `/api/delete-lead-pack/${selectedLeadPack}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

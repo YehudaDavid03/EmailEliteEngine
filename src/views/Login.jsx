@@ -24,7 +24,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
 
     axios({
       method: 'POST',
-      url: 'http://3.23.81.35/api/login',
+      url: '/api/login',
       data: {
         userEmail: login.userEmail,
         userPassword: login.userPassword
@@ -60,7 +60,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
           <input 
             type="email" 
             name="userEmail" 
-            placeholder="User's Email" 
+            placeholder="User's Email Address" 
             value={login.userEmail} 
             onChange={(e) => { setLogin({ ...login, [e.target.name]: e.target.value }) }}
           />

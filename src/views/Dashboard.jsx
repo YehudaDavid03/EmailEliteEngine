@@ -13,7 +13,7 @@ const Dashboard = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "http://3.23.81.35/api/get-dashboard-content",
+      url: "/api/get-dashboard-content",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

@@ -24,7 +24,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "http://3.23.81.35/api/get-template",
+      url: "/api/get-template",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -58,7 +58,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "POST",
-      url: "http://3.23.81.35/api/create-template",
+      url: "/api/create-template",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -87,7 +87,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "DELETE",
-      url: `http://3.23.81.35/api/delete-template/${selectedValuedIdentification}`,
+      url: `/api/delete-template/${selectedValuedIdentification}`,
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },

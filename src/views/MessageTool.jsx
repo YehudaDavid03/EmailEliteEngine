@@ -21,7 +21,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "GET",
-      url: "http://3.23.81.35/api/get-message-options",
+      url: "/api/get-message-options",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
@@ -60,7 +60,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
     axios({
       method: "POST",
-      url: "http://3.23.81.35/api/send-mass-initiation",
+      url: "/api/send-mass-initiation",
       headers: {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
