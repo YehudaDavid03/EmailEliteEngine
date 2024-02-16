@@ -21,7 +21,7 @@ const NavBar = ({ sendUserInfo, navigate, receiveUserInfo }) => {
         <Link to="/messageTool"><span className="material-icons">forward_to_inbox</span></Link>
         <Link to="/leadTool"><span className="material-icons">auto_stories</span></Link>
         <Link to="/templateTool"><span className="material-icons">design_services</span></Link>
-        <Link to="/"><span className="material-icons">settings</span></Link>
+        <Link to="/settings"><span className="material-icons">settings</span></Link>
         <span onClick={() => {logoutFunc()}} className="material-icons">logout</span>
       </div>
     </div>

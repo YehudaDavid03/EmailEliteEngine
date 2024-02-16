@@ -653,3 +653,48 @@
   width: 10%;
   border-radius: 50%;
 }
+
+.settings-main {
+  padding: 5%;
+  margin: 0 auto;
+  width: 50%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 92vh;
+}
+
+.settings-main input {
+  min-height: 36px;
+  outline: none;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
+  border: none;
+  border-bottom: solid 1.25px var(--secondary);
+  background-color: transparent;
+
+  font-weight: 300;
+  color: var(--secondary);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.settings-main button {
+  min-height: 36px;
+  outline: none;
+  background-color: #DB4437;
+  border: 1.25px solid #DB4437;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
+  color: var(--white);
+  cursor: pointer;
+
+  font-weight: 300;
+  color: var(--white);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.settings-main button:hover {
+  opacity: .6;
+}

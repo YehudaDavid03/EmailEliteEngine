@@ -6,6 +6,7 @@ import Dashboard from "./views/Dashboard"
 import TemplateTool from "./views/TemplateTool"
 import LeadTool from "./views/LeadTool"
 import MessageTool from "./views/MessageTool"
+import Settings from "./views/Settings"
 
 function App() {
   const navigate = useNavigate()
@@ -38,6 +39,7 @@ function App() {
               <Route path="/templateTool" element={<TemplateTool receiveUserInfo={receiveUserInfo} sendUserInfo={sendUserInfo} navigate={navigate} />} />
               <Route path="/leadTool" element={<LeadTool receiveUserInfo={receiveUserInfo} sendUserInfo={sendUserInfo} navigate={navigate} />} />
               <Route path="/messageTool" element={<MessageTool receiveUserInfo={receiveUserInfo} sendUserInfo={sendUserInfo} navigate={navigate} />} />
+              <Route path="/settings" element={<Settings receiveUserInfo={receiveUserInfo} sendUserInfo={sendUserInfo} navigate={navigate} />} />
             </>
           )
 
