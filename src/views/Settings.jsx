@@ -58,27 +58,72 @@ const Settings = ({ sendUserInfo, navigate, receiveUserInfo }) => {
         <NavBar sendUserInfo={sendUserInfo} navigate={navigate} receiveUserInfo={receiveUserInfo} />
 
         <div className="settings-main">
+          <div className="settings-main-one">
           <input 
-            type="text" 
-            name="newPasswordOne" 
-            placeholder="New Password" 
-            value={reset.newPasswordOne} 
-            onChange={(e) => { setReset({ ...reset, [e.target.name]: e.target.value }) }}
-          />
-          
-          <input 
-            type="text" 
-            name="newPasswordTwo" 
-            placeholder="New Password" 
-            value={reset.newPasswordTwo} 
-            onChange={(e) => { setReset({ ...reset, [e.target.name]: e.target.value }) }}
-          />
+              type="text" 
+              placeholder="" 
+              value={receiveUserInfo.firstName} 
+              disabled
+            />
 
-          <button onClick={() => {
-            if (window.confirm("Are you sure you want to reset your password?")) {
-              handleReset()
-            }
-          }}>RESET PASSWORD</button>
+            <input 
+              type="text" 
+              placeholder="" 
+              value={receiveUserInfo.lastName} 
+              disabled
+            />
+
+            <input 
+              type="text" 
+              placeholder="" 
+              value={receiveUserInfo.phoneNumber} 
+              disabled
+            />
+
+            <input 
+              type="text" 
+              placeholder="" 
+              value={receiveUserInfo.companyName} 
+              disabled
+            />
+
+            <input 
+              type="text" 
+              placeholder="" 
+              value={receiveUserInfo.emailAddress} 
+              disabled
+            />
+            
+            <button style={{backgroundColor: "var(--main)", border: "1.25px solid var(--main)"}}   onClick={() => {
+              const subject = encodeURIComponent(`I need to make changes to my account. Account ID: ${receiveUserInfo.userId}`);
+              const body = encodeURIComponent("Dear support team,\n\nI am reaching out to request changes to my account. Please review the following details: ");
+              window.location.href = `mailto:yehudadavidwebsites@gmail.com?subject=${subject}&body=${body}`;
+            }}>CONTACT SUPPORT</button>
+          </div>
+
+          <div className="settings-main-two">
+            <input 
+              type="text" 
+              name="newPasswordOne" 
+              placeholder="New Password" 
+              value={reset.newPasswordOne} 
+              onChange={(e) => { setReset({ ...reset, [e.target.name]: e.target.value }) }}
+            />
+            
+            <input 
+              type="text" 
+              name="newPasswordTwo" 
+              placeholder="New Password" 
+              value={reset.newPasswordTwo} 
+              onChange={(e) => { setReset({ ...reset, [e.target.name]: e.target.value }) }}
+            />
+
+            <button style={{backgroundColor: "#DB4437", border: "1.25px solid #DB4437"}} onClick={() => {
+              if (window.confirm("Are you sure you want to reset your password?")) {
+                handleReset()
+              }
+            }}>RESET PASSWORD</button>
+          </div>
         </div>
       </>
     )
