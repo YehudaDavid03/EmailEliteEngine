@@ -9,14 +9,14 @@ const NavBar = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
   return (
     <div className="nav-bar-main">
-      <div style={{width: "60%"}}>
+      <div>
         <Link to="/dashboard" style={{textDecoration: "none"}}>
           <p>{receiveUserInfo.companyName}</p>
         </Link>
         <span>{`(Logged In: ${receiveUserInfo.firstName}, ${receiveUserInfo.lastName}) (Last Logged In: ${new Date(receiveUserInfo.lastLogin)})`}</span>
       </div>
 
-      <div style={{width: "40%"}}>
+      <div>
         <Link to="/dashboard"><span className="material-icons">dashboard</span></Link>
         <Link to="/messageTool"><span className="material-icons">forward_to_inbox</span></Link>
         <Link to="/leadTool"><span className="material-icons">auto_stories</span></Link>
