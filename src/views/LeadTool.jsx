@@ -20,24 +20,32 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
   const convertMoneyStringToNumber = (moneyString) => {
     if (!moneyString) return 0
-
-    const regex = /[\d,]+/g
-    const matches = moneyString.match(regex)
-
+  
+    const regex = /(?:^|\s)(?:\$)?(\d+(?:,\d{3})*(?:\.\d{1,2})?)([KMB]?)(?=\s|$)/gi
+    const matches = [...moneyString.matchAll(regex)]
+  
     let num = 0
-
-    if (matches.length === 1) {
-      num = parseInt(matches[0].replace(/,/g, ""))
-      if (moneyString.includes("M")) num *= 1000000
-      else if (moneyString.includes("K")) num *= 1000
-    } else if (matches.length === 2) {
-      const [lower, upper] = matches.map(match => parseInt(match.replace(/,/g, "")))
-      num = upper > lower ? upper : lower
-      num /= moneyString.includes("$") ? 1 : 1000000
-    } else return NaN
-
-    num = Math.round(num / 1000) * 1000
-    return num
+  
+    for (const match of matches) {
+      const [fullMatch, valueStr, suffix] = match
+      let value = parseFloat(valueStr.replace(/,/g, ""))
+  
+      switch (suffix.toUpperCase()) {
+        case "K":
+          value *= 1000
+          break
+        case "M":
+          value *= 1000000
+          break
+        case "B":
+          value *= 1000000000
+          break
+      }
+  
+      num += value
+    }
+  
+    return Math.round(num)
   }
 
   const handleFile = async (e) => {
@@ -53,28 +61,29 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
       const jsonData = XLSX.utils.sheet_to_json(workSheet, { raw: true })
 
       for (const obj of jsonData) {
-        const newObj = {};
+        const newObj = {}
         for (const key in obj) {
             if (key.toLowerCase().includes("first") || key.toLowerCase().includes("last")) {
                 const capitalizedWord = obj[key]
+                    .trim()
                     .toLowerCase()
                     .split(" ")
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                    .join(" ");
-                newObj[key.toLowerCase().includes("first") ? "firstName" : "lastName"] = capitalizedWord;
+                    .join(" ")
+                newObj[key.toLowerCase().includes("first") ? "firstName" : "lastName"] = capitalizedWord
             } else if (key.toLowerCase().includes("company")) {
-                const capitalizedCompanyName = obj[key].split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
-                newObj["companyName"] = capitalizedCompanyName;
+                const capitalizedCompanyName = obj[key].trim().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ")
+                newObj["companyName"] = capitalizedCompanyName
             } else if (key.toLowerCase().includes("email")) {
-                newObj["emailAddress"] = obj[key].toLowerCase();
+                newObj["emailAddress"] = obj[key].trim().toLowerCase()
             } else if (key.toLowerCase().includes("revenue")) {
-                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString());
+                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString())
             }
         }
     
         if (newObj.firstName && newObj.lastName && newObj.companyName && newObj.emailAddress) {
             if (!newObj.monthlyRevenue || newObj.monthlyRevenue > 0) {
-                newArray.push(newObj);
+                newArray.push(newObj)
             }
         }
     }    
@@ -309,7 +318,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                   <p>{LeadPackageIndividual?.first_name + ", " + LeadPackageIndividual?.last_name}</p>
                   <p>{LeadPackageIndividual?.email_address}</p>
                   <p>{LeadPackageIndividual?.company_name}</p>
-                  <p>{LeadPackageIndividual?.monthly_revenue.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+                  <p>{LeadPackageIndividual?.monthly_revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
                   <p>
                     <span onClick={() => {
                       if (window.confirm("Are you sure you want to delete this lead?")) {
