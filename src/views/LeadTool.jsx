@@ -77,7 +77,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
             } else if (key.toLowerCase().includes("email")) {
                 newObj["emailAddress"] = obj[key].trim().toLowerCase()
             } else if (key.toLowerCase().includes("revenue")) {
-                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString().split('-').pop().split('to').pop().split(' ').pop().split(':').pop().trim())
+                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString().split('-').pop().split('to').pop().split(' ').pop().split(':').pop().replace('+', '').trim())
             }
         }
     
