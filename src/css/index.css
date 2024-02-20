@@ -564,6 +564,24 @@
   font-family: 'Titillium Web', sans-serif;
 }
 
+.lead-tool-main-two button {
+  width: 100%;
+  min-height: 36px;
+  outline: none;
+  color: var(--white);
+  cursor: pointer;
+  background-color: #0F9D58;
+  border: 1.25px solid #0F9D58;
+
+  font-weight: 300;
+  color: var(--white);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.lead-tool-main-two button:hover {
+  opacity: 0.6;
+}
+
 .lead-tool-main-two div {
   background-color: var(--grey);
   margin-bottom: 5%;

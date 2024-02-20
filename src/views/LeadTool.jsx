@@ -77,7 +77,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
             } else if (key.toLowerCase().includes("email")) {
                 newObj["emailAddress"] = obj[key].trim().toLowerCase()
             } else if (key.toLowerCase().includes("revenue")) {
-                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString().split('-').pop().split('to').pop().split(' ').pop().split(':').pop().replace('+', '').trim())
+                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString().split("-").pop().split("to").pop().split(" ").pop().split(":").pop().replace("+", "").trim())
             }
         }
     
@@ -90,7 +90,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
     
       setLeadPack({ ...leadPack, jsonEmailList: newArray })
     } else {
-      alert("Please only select 'csv' / 'numbers' / 'xlsx' files")
+      alert(`Please only select "csv" / "numbers" / "xlsx" files`)
     }
 
     delay(500).then(() => setApiLoading(false))
@@ -237,6 +237,37 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
     })
   }
 
+  const downloadExcel = () => {
+    const formattedDataArray = receivedLeadIndividual.map((item, index) => ({
+      count: index + 1,
+      first_name: item.first_name,
+      last_name: item.last_name,
+      email_address: item.email_address,
+      company_name: item.company_name,
+      monthly_revenue: `$${item.monthly_revenue.toLocaleString()}`
+    }))
+  
+    const worksheet = XLSX.utils.json_to_sheet(formattedDataArray)
+  
+    worksheet["!cols"] = [ { width: 10 }, { width: 20 }, { width: 20 }, { width: 40 }, { width: 40 }, { width: 20 } ]
+  
+    worksheet["A1"] = { t: "s", v: "Count" }
+    worksheet["B1"] = { t: "s", v: "First Name" }
+    worksheet["C1"] = { t: "s", v: "Last Name" }
+    worksheet["D1"] = { t: "s", v: "Email Address" }
+    worksheet["E1"] = { t: "s", v: "Company Name" }
+    worksheet["F1"] = { t: "s", v: "Monthly Revenue" }
+  
+    const workbook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Lead Data Sheet")
+  
+    const now = new Date()
+    const formattedDateTime = now.toISOString().replace(/[-:]/g, "").replace("T", "_").replace("Z", "")
+    const filename = `lead_package_${formattedDateTime}.xlsx`
+  
+    XLSX.writeFile(workbook, filename)
+  }
+
   const filteredLeads = receivedLeadIndividual?.filter(lead => {
     return (
       lead?.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -328,6 +359,16 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                   </p>
                 </div>
               ))}
+              
+              {
+                receivedLeadIndividual.length > 0 ?
+
+                (<button onClick={downloadExcel}>Download Lead Package</button>)
+
+                :
+
+                (<></>)
+              }
             </div>
           </div>
         </>
