@@ -82,12 +82,15 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
             }
         }
     
-        if (newObj.firstName && newObj.lastName && newObj.companyName && newObj.emailAddress) {
-            if (!newObj.monthlyRevenue || newObj.monthlyRevenue > 0) {
-                newArray.push(newObj)
-            }
-        }
-    }    
+        if (newObj.emailAddress) {
+          newObj.firstName = newObj.firstName ? newObj.firstName : ""
+          newObj.lastName = newObj.lastName ? newObj.lastName : ""
+          newObj.companyName = newObj.companyName ? newObj.companyName : ""
+          newObj.monthlyRevenue = newObj.monthlyRevenue > 0 ? newObj.monthlyRevenue : 100000
+      
+          newArray.push(newObj)
+        }      
+      }    
     
       setLeadPack({ ...leadPack, jsonEmailList: newArray })
     } else {
