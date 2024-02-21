@@ -193,7 +193,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
             {jobRunningList?.sort((a, b) => new Date(b.jobStartDate) - new Date(a.jobStartDate)).map((item, index) => (
               <div style={item?.jobStatus ? {backgroundColor: "#0F9D58"} : {backgroundColor: "#ffd151"}} className="job-list" key={index}>
-                <p>{item?.jobStatus ? "Running" : "Complete"}</p>
+                <p>{item?.jobStatus ? "Running" : item?.jobSize === item?.jobCompeted ? "Completed" : "Terminated"}</p>
                 <p>{item?.estimate}</p>
                 <p>{item?.jobStartDate ? new Date(item?.jobStartDate).toLocaleString() : ""}</p>
                 {item?.jobStatus ? <span onClick={() => {

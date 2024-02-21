@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const NavBar = ({ sendUserInfo, navigate, receiveUserInfo }) => {
   const logoutFunc = () => {
     sendUserInfo(null)
-    navigate('/login', {replace: true})
+    navigate("/login", {replace: true})
   }
 
   return (

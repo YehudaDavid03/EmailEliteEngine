@@ -23,20 +23,26 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
     setLoginApiLoading(true)
 
     axios({
-      method: 'POST',
-      url: 'https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/login',
+      method: "POST",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/login",
       data: {
         userEmail: login.userEmail,
         userPassword: login.userPassword
       }
     }).then((response) => {
       sendUserInfo(response.data)
-      navigate('/dashboard', {replace: true})
+      navigate("/dashboard", {replace: true})
     }).catch((error) => {
       alert(error.response.data.message)
     }).finally(() => {
       setLoginApiLoading(false)
     })
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin()
+    }
   }
   
   return (
@@ -49,7 +55,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
     (
       receiveUserInfo !== null ?
       
-      (navigate('/dashboard', {replace: true}))
+      (navigate("/dashboard", {replace: true}))
 
       :
 
@@ -63,6 +69,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
             placeholder="User's Email" 
             value={login.userEmail} 
             onChange={(e) => { setLogin({ ...login, [e.target.name]: e.target.value }) }}
+            onKeyDown={handleKeyDown}
           />
           
           <input 
@@ -71,6 +78,7 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
             placeholder="User's Password" 
             value={login.userPassword} 
             onChange={(e) => { setLogin({ ...login, [e.target.name]: e.target.value }) }}
+            onKeyDown={handleKeyDown}
           />
 
           <button onClick={() => {handleLogin()}} >LOGIN</button>

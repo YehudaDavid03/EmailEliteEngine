@@ -610,7 +610,7 @@
 }
 
 .lead-tool-main-two div p:nth-child(2) {
-  width: 30%;
+  width: 40%;
 }
 
 .lead-tool-main-two div p:nth-child(3) {
@@ -618,12 +618,12 @@
 }
 
 .lead-tool-main-two div p:nth-child(4) {
-  width: 20%;
+  width: 15%;
 }
 
 .lead-tool-main-two div p:nth-child(5) {
   text-align: center;
-  width: 10%;
+  width: 5%;
 }
 
 .message-tool-main {

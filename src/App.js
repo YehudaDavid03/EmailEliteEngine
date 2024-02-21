@@ -18,7 +18,7 @@ function App() {
   }
 
   function RedirectToLogin() {
-    navigate('/login', {replace: true})
+    navigate("/login", {replace: true})
   }  
 
   useEffect(() => {

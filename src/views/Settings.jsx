@@ -38,7 +38,7 @@ const Settings = ({ sendUserInfo, navigate, receiveUserInfo }) => {
     }).then((response) => {
       alert(response.data.message)
       sendUserInfo(null)
-      navigate('/login', {replace: true})
+      navigate("/login", {replace: true})
     }).catch((error) => {
       alert(error.response.data.message)
     }).finally(() => {
@@ -94,7 +94,7 @@ const Settings = ({ sendUserInfo, navigate, receiveUserInfo }) => {
               disabled
             />
             
-            <button style={{backgroundColor: "var(--main)", border: "1.25px solid var(--main)"}}   onClick={() => {
+            <button style={{backgroundColor: "var(--main)", border: "1.25px solid var(--main)"}} onClick={() => {
               const subject = encodeURIComponent(`I need to make changes to my account. Account ID: ${receiveUserInfo.userId}`);
               const body = encodeURIComponent("Dear support team,\n\nI am reaching out to request changes to my account. Please review the following details: ");
               window.location.href = `mailto:yehudadavidwebsites@gmail.com?subject=${subject}&body=${body}`;

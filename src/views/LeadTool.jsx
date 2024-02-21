@@ -242,7 +242,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
   }
 
   const downloadExcel = () => {
-    const formattedDataArray = receivedLeadIndividual.map((item, index) => ({
+    const formattedDataArray = receivedLeadIndividual.sort((a, b) => a.first_name.localeCompare(b.first_name)).map((item, index) => ({
       count: index + 1,
       first_name: item.first_name,
       last_name: item.last_name,
@@ -313,7 +313,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
               </div>
 
               <div>
-                {receivedLeadPack?.map((LeadPackage, index) => (
+                {receivedLeadPack?.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date)).map((LeadPackage, index) => (
                   <div key={LeadPackage?.lead_package_id}>
                     <p>{`${index + 1}) `}{LeadPackage?.lead_package_name}</p>
                     <section>
@@ -348,7 +348,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                 (<></>)
               }
 
-              {filteredLeads?.map((LeadPackageIndividual, index) => (
+              {filteredLeads?.sort((a, b) => a.first_name.localeCompare(b.first_name)).map((LeadPackageIndividual, index) => (
                 <div key={LeadPackageIndividual?.lead_id}>
                   <p>{LeadPackageIndividual?.first_name + ", " + LeadPackageIndividual?.last_name}</p>
                   <p>{LeadPackageIndividual?.email_address}</p>

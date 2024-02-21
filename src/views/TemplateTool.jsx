@@ -169,7 +169,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
           </div>
 
           <div className="template-tool-main-two">
-            {userTemplateData?.map((template, index) => (
+            {userTemplateData?.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date)).map((template, index) => (
               <div key={index}>
                 <p>{`${index + 1}) `}{template.template_name}</p>
 
