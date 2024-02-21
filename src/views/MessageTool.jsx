@@ -8,6 +8,7 @@ import { sampleData } from "../components/sampleData"
 import profileAvatar from "../assets/profile-avatar.png"
 
 const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
+  const [jobRunningList, setJobRunningList] = useState()
   const [optionsData, setOptionsData] = useState()
   const [apiLoading, setApiLoading] = useState(false)
   const [blastData, setBlastData] = useState({ 
@@ -40,6 +41,36 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
     })
   }, [])
 
+  useEffect(() => {
+    const fetchData = () => {  
+      axios({
+        method: "GET",
+        url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-current-jobs",
+        headers: {
+          Authorization: `Bearer ${receiveUserInfo?.token}`
+        },
+      })
+      .then((response) => {
+        setJobRunningList(response.data)
+      })
+      .catch((error) => {
+        if (error.response.data.message === "Access token is invalid or expired") {
+          sendUserInfo(null)
+        }
+
+        alert(error.response.data.message)
+      })
+      .finally(() => {
+        fetchDataTimeout = setTimeout(fetchData, 35000)
+      })
+    }
+  
+    let fetchDataTimeout
+    fetchData()
+
+    return () => clearTimeout(fetchDataTimeout)
+  }, [])
+
   const handleBlast = () => {
     if (blastData.emailSubject.length === 0) {
       alert("ERR: Email subject line cannot be empty")
@@ -65,6 +96,35 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
         Authorization: `Bearer ${receiveUserInfo?.token}`
       },
       data: blastData
+    }).then((response) => {
+      alert(response.data.message)
+      window.location.reload()
+    }).catch((error) => {
+      if (error.response.data.message == "Access token is invalid or expired") {
+        sendUserInfo(null)
+      }
+      
+      alert(error.response.data.message)
+    }).finally(() => {
+      setApiLoading(false)
+    })
+  }
+
+  const handleStopSelectedJob = (selectedJobId) => {
+    if (selectedJobId.length === 0) {
+      alert("ERR: Please reload the page")
+      return 
+    }
+
+    setApiLoading(true)
+
+    axios({
+      method: "POST",
+      url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/terminate-selected-job",
+      headers: {
+        Authorization: `Bearer ${receiveUserInfo?.token}`
+      },
+      data: { selectedJobId: selectedJobId }
     }).then((response) => {
       alert(response.data.message)
       window.location.reload()
@@ -131,6 +191,19 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                 }
               }}>Start Email Blast</button>
             </div>
+
+            {jobRunningList?.sort((a, b) => new Date(b.jobStartDate) - new Date(a.jobStartDate)).map((item, index) => (
+              <div style={item?.jobStatus ? {backgroundColor: "#0F9D58"} : {backgroundColor: "#ffd151"}} className="job-list" key={index}>
+                <p>{item?.jobStatus ? "Running" : "Complete"}</p>
+                <p>{item?.estimate}</p>
+                <p>{item?.jobStartDate ? new Date(item?.jobStartDate).toLocaleString() : ""}</p>
+                {item?.jobStatus ? <span onClick={() => {
+                  if (window.confirm("Are you sure you to terminate this process?")) {
+                    handleStopSelectedJob(item?.jobId)
+                  }
+                }} className="material-icons">power_settings_new</span> : <span className="material-icons">bookmark</span>}
+              </div>
+            ))}
           </div>
 
           {

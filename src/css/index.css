@@ -663,6 +663,22 @@
   align-items: center;
 }
 
+.job-list {
+  margin-bottom: 5%;
+  padding: 2.5%;
+  cursor: pointer;
+}
+
+.job-list p {
+  font-weight: 300;
+  color: var(--white);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.job-list span {
+  color: var(--white);
+}
+
 .message-tool-main-one button {
   width: 100%;
   min-height: 36px;
@@ -675,6 +691,7 @@
   font-weight: 300;
   color: var(--white);
   font-family: 'Titillium Web', sans-serif;
+  margin-bottom: 5%;
 }
 
 .message-tool-main-one button:hover {
