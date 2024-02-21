@@ -9,6 +9,7 @@ import profileAvatar from "../assets/profile-avatar.png"
 
 const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
   const [jobRunningList, setJobRunningList] = useState()
+
   const [optionsData, setOptionsData] = useState()
   const [apiLoading, setApiLoading] = useState(false)
   const [blastData, setBlastData] = useState({ 
@@ -42,7 +43,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
   }, [])
 
   useEffect(() => {
-    const fetchData = () => {  
+    const runLoadOut = () => {
       axios({
         method: "GET",
         url: "https://glacial-harbor-81192-6ae27de8e915.herokuapp.com/api/get-current-jobs",
@@ -52,23 +53,21 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
       })
       .then((response) => {
         setJobRunningList(response.data)
+
+        if (response.data.some(job => job.jobStatus === true)) {
+          setTimeout(() => { runLoadOut() }, 30000)
+        }
       })
       .catch((error) => {
         if (error.response.data.message === "Access token is invalid or expired") {
           sendUserInfo(null)
         }
-
+        
         alert(error.response.data.message)
       })
-      .finally(() => {
-        fetchDataTimeout = setTimeout(fetchData, 35000)
-      })
     }
-  
-    let fetchDataTimeout
-    fetchData()
 
-    return () => clearTimeout(fetchDataTimeout)
+    runLoadOut()
   }, [])
 
   const handleBlast = () => {
