@@ -45,7 +45,8 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
       num += value
     }
   
-    return Math.round(num / 100) * 100
+    // return Math.round(num / 100) * 100
+    return Math.ceil(num / 5000) * 5000
   }
 
   const handleFile = async (e) => {
