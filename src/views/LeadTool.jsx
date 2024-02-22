@@ -48,7 +48,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
     // return Math.round(num / 100) * 100
     return Math.ceil(num / 5000) * 5000
   }
-
+  
   const handleFile = async (e) => {
     setApiLoading(true)
     const newArray = []
@@ -66,6 +66,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
         for (const key in obj) {
             if (key.toLowerCase().includes("first") || key.toLowerCase().includes("last")) {
                 const capitalizedWord = obj[key]
+                    .toString()
                     .trim()
                     .toLowerCase()
                     .split(" ")
@@ -73,12 +74,12 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                     .join(" ")
                 newObj[key.toLowerCase().includes("first") ? "firstName" : "lastName"] = capitalizedWord
             } else if (key.toLowerCase().includes("company")) {
-                const capitalizedCompanyName = obj[key].trim().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ")
+                const capitalizedCompanyName = obj[key].toString().trim().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ")
                 newObj["companyName"] = capitalizedCompanyName
             } else if (key.toLowerCase().includes("email")) {
-                newObj["emailAddress"] = obj[key].trim().toLowerCase()
+                newObj["emailAddress"] = obj[key].toString().trim().toLowerCase()
             } else if (key.toLowerCase().includes("revenue")) {
-                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString().toLowerCase().replace(/[\s+]/g, '').split("-").pop().split("to").pop().split(":").pop().replace("morethan", "").trim())
+                newObj["monthlyRevenue"] = convertMoneyStringToNumber(obj[key].toString().toLowerCase().replace(/[\s+]/g, '').replace(/(\.\d+$)(?![a-zA-Z])/g, '').split("-").pop().split("to").pop().split(":").pop().replace("morethan", "").trim())
             }
         }
     
@@ -350,7 +351,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
 
               {filteredLeads?.sort((a, b) => a.first_name.localeCompare(b.first_name)).map((LeadPackageIndividual, index) => (
                 <div key={LeadPackageIndividual?.lead_id}>
-                  <p>{LeadPackageIndividual?.first_name + ", " + LeadPackageIndividual?.last_name}</p>
+                  <p>{LeadPackageIndividual && (LeadPackageIndividual.first_name && LeadPackageIndividual.last_name ? `${LeadPackageIndividual.first_name}, ${LeadPackageIndividual.last_name}` : `${LeadPackageIndividual.first_name || LeadPackageIndividual.last_name}`)}</p>
                   <p>{LeadPackageIndividual?.email_address}</p>
                   <p>{LeadPackageIndividual?.company_name}</p>
                   <p>{LeadPackageIndividual?.monthly_revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>
