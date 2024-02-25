@@ -318,7 +318,7 @@ const LeadTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                   <div key={LeadPackage?.lead_package_id}>
                     <p>{`${index + 1}) `}{LeadPackage?.lead_package_name}</p>
                     <p>{LeadPackage ? new Date(LeadPackage?.creation_date).toLocaleString() : ""}</p>
-                    <p>{`(${LeadPackage?.lead_count})`}</p>
+                    <p>{`(${LeadPackage?.lead_count.toLocaleString()})`}</p>
                     <section>
                       <span onClick={() => { handleChosen(LeadPackage?.lead_package_id) }} style={{ color: "#0F9D58" }} className="material-icons">open_in_new</span>
                       <span onClick={() => {

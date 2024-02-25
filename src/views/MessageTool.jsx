@@ -178,7 +178,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
               <option value="">Lead Package List</option>
               
               {optionsData?.leadPackagesList?.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date)).map((item, index) => (
-                <option key={index} value={item?.lead_package_id}>{item?.lead_package_name}, {`(${item?.lead_count})`}</option>
+                <option key={index} value={item?.lead_package_id}>{item?.lead_package_name}, {`(${item?.lead_count.toLocaleString()})`}</option>
               ))}
             </select>
 
