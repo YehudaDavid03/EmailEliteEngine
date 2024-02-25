@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/EmailEliteEngine/static/css/main.79498289.css",
-    "main.js": "/EmailEliteEngine/static/js/main.54678333.js",
+    "main.js": "/EmailEliteEngine/static/js/main.316dc531.js",
     "static/media/profile-avatar.png": "/EmailEliteEngine/static/media/profile-avatar.23aac3776d29de3c61c9.png",
     "index.html": "/EmailEliteEngine/index.html",
     "main.79498289.css.map": "/EmailEliteEngine/static/css/main.79498289.css.map",
-    "main.54678333.js.map": "/EmailEliteEngine/static/js/main.54678333.js.map"
+    "main.316dc531.js.map": "/EmailEliteEngine/static/js/main.316dc531.js.map"
   },
   "entrypoints": [
     "static/css/main.79498289.css",
-    "static/js/main.54678333.js"
+    "static/js/main.316dc531.js"
   ]
 }
