@@ -534,6 +534,7 @@
   font-weight: 300;
   color: var(--secondary);
   font-family: 'Titillium Web', sans-serif;
+  width: 30%;
 }
 
 .lead-tool-main-one > div:last-child section {

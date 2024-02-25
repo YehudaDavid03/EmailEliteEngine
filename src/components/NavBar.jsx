@@ -13,7 +13,7 @@ const NavBar = ({ sendUserInfo, navigate, receiveUserInfo }) => {
         <Link to="/dashboard" style={{textDecoration: "none"}}>
           <p>{receiveUserInfo.companyName}</p>
         </Link>
-        <span>{`(Logged In: ${receiveUserInfo.firstName}, ${receiveUserInfo.lastName}) (Last Logged In: ${new Date(receiveUserInfo.lastLogin)})`}</span>
+        <span>{`(Logged In: ${receiveUserInfo.firstName}, ${receiveUserInfo.lastName}) (Last Logged In: ${new Date(receiveUserInfo.lastLogin).toLocaleString()})`}</span>
       </div>
 
       <div>

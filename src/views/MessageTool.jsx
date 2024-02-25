@@ -168,7 +168,7 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
             <select name="emailTemplate" onChange={(e) => setBlastData({ ...blastData, [e.target.name]: parseInt(e.target.value) })}>
               <option value={0}>Template Choice</option>
 
-              {optionsData?.templateList?.map((item, index) => (
+              {optionsData?.templateList?.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date)).map((item, index) => (
                 <option key={index} value={parseInt(item?.template_id)}>{item?.template_name}</option>
               ))}
             </select>
@@ -177,8 +177,8 @@ const MessageTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
             <select name="emailLeadPackage" onChange={(e) => setBlastData({ ...blastData, [e.target.name]: e.target.value })}>
               <option value="">Lead Package List</option>
               
-              {optionsData?.leadPackagesList?.map((item, index) => (
-                <option key={index} value={item?.lead_package_id}>{item?.lead_package_name}</option>
+              {optionsData?.leadPackagesList?.sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date)).map((item, index) => (
+                <option key={index} value={item?.lead_package_id}>{item?.lead_package_name}, {`(${item?.lead_count})`}</option>
               ))}
             </select>
 
