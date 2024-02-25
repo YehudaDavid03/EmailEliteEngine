@@ -12,11 +12,13 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
   const handleLogin = () => {
     if (login.userEmail.length === 0) {
       alert("ERR: Email entry non existent")
+      setLogin({ userEmail: "", userPassword: "" })
       return 
     }
     
     if (login.userPassword.length === 0) {
       alert("ERR: Password entry non existent")
+      setLogin({ userEmail: "", userPassword: "" })
       return 
     }
 
@@ -33,6 +35,11 @@ const Login = ({ receiveUserInfo, sendUserInfo, navigate }) => {
       sendUserInfo(response.data)
       navigate("/dashboard", {replace: true})
     }).catch((error) => {
+      if (error.response.data.message === "Invalid password") {
+        setLogin({ ...login, userPassword: "" })
+      } else {
+        setLogin({ userEmail: "", userPassword: "" })
+      }
       alert(error.response.data.message)
     }).finally(() => {
       setLoginApiLoading(false)
