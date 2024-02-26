@@ -130,6 +130,10 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
     previewWindow.document.write(evaluateMathExpressions(htmlContent, sampleData))
   }
 
+  const handleDragStart = (event, item) => {
+    event.dataTransfer.setData("text/plain", item)
+  }
+
   return (
     apiLoading == true ?
 
@@ -151,6 +155,40 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
               value={templatePack.templateName}
               onChange={(e) => {setTemplatePack({ ...templatePack, [e.target.name]: e.target.value })}}
             />
+
+            <div className="draggable-items">
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "first_name")} >
+                First Name
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "last_name")} >
+                Last Name
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "company_name")} >
+                Company Name
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue]")} >
+                Monthly Revenue
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 1.00]")} >
+                % of monthly revenue approved
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 1.00 * 1.00]")} >
+                factor rate on approval 
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 1.00 * 1.00 / 52]")} >
+                daily / weekly payment remittance
+              </div>
+
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.00]")} >
+                bank fee on approval
+              </div>
+            </div>
 
             <Editor
               editorState={editorState}

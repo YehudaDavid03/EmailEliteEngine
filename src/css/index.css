@@ -398,13 +398,37 @@
   width: 100%;
   min-height: 36px;
   outline: none;
-  margin-bottom: 5%;
   border: none;
   border-bottom: solid 1.25px var(--secondary);
   background-color: transparent;
 
   font-weight: 300;
   color: var(--secondary);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.template-tool-main-one .draggable-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 2.5%;
+}
+
+.template-tool-main-one .draggable-item {
+  margin-bottom: 2.5%;
+  width: 22.5%;
+  font-size: 12px;
+  padding: 1.25% 2.5%;
+  text-align: center;
+  outline: none;
+  color: var(--secondary);
+  cursor: pointer;
+  background-color: var(--grey);
+  border: 1.25px solid var(--secondary);
+  font-weight: 300;
   font-family: 'Titillium Web', sans-serif;
 }
 
