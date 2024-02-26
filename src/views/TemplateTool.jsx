@@ -174,7 +174,7 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
               </div>
 
               <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.80]")} >
-                percent of monthly revenue approved
+                percentage of monthly revenue approved
               </div>
 
               <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.80 * 1.25]")} >
