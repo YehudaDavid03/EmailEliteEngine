@@ -173,19 +173,19 @@ const TemplateTool = ({ sendUserInfo, navigate, receiveUserInfo }) => {
                 Monthly Revenue
               </div>
 
-              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 1.00]")} >
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.80]")} >
                 % of monthly revenue approved
               </div>
 
-              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 1.00 * 1.00]")} >
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.80 * 1.25]")} >
                 factor rate on approval 
               </div>
 
-              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 1.00 * 1.00 / 52]")} >
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.80 * 1.25 / 52]")} >
                 daily / weekly payment remittance
               </div>
 
-              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.00]")} >
+              <div className="draggable-item" draggable onDragStart={(e) => handleDragStart(e, "$[monthly_revenue * 0.80 * 0.025]")} >
                 bank fee on approval
               </div>
             </div>
